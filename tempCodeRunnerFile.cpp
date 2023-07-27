@@ -1,0 +1,1 @@
+int biggest_num = array[0];
