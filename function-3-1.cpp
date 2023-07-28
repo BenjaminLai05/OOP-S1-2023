@@ -16,6 +16,7 @@ bool is_fanarray(int array[], int n)  {
         if (arrayCheckForward[i] != arrayCheckBackward[i])
         {
             status = false; 
+            break;
         }
     }
     return status;
