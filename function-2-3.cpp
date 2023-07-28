@@ -24,6 +24,6 @@ void two_five_nine(int array[], int n) {
     std::cout << "There are no 2's, 5's or 9's";
     }
     else { 
-    std::cout << "2:" << countTwo << ";5:" << countFive << ";9:" << countNine;
+    std::cout << "2:" << countTwo << ";5:" << countFive << ";9" << countNine << "\n";
     }
 }

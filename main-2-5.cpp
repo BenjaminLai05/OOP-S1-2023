@@ -1,6 +1,6 @@
 #include <iostream> 
 
-extern bool is_descending(int array[], int n)
+extern bool is_descending(int array[], int n);
 
 int main() {
     int array[5] = {1,2,3,2,1};

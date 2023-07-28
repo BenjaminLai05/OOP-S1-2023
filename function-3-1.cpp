@@ -11,11 +11,12 @@ bool is_fanarray(int array[], int n)  {
         arrayCheckBackward[n - i - 1] = array[i];
     }
 
+    bool status = true;
     for (int i = 0; i < n; i++) {
         if (arrayCheckForward[i] != arrayCheckBackward[i])
         {
-            return false; 
+            status = false; 
         }
     }
-    return true;
+    return status;
 }
