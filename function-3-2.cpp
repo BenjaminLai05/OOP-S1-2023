@@ -12,9 +12,9 @@ int median_array(int array[], int n) {
     }
   }
 
-  int median = array[n / 2];
+  int median = array[n/2];
 
-  if (array[n] % 2 == 0) {
+  if (n % 2 == 0) {
     return 0;
   } else {
     return median;
