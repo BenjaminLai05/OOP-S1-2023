@@ -48,7 +48,7 @@ void count_digits(int array[4][4]) {
       }
     }
   }
-  std::cout << "0:" << zer << ":1:" << one << ":2:" << two << ":3:" << thr
-            << ":4:" << fou << ":5:" << fiv << ":6:" << six << ":7:" << sev
-            << ":8:" << eig << ":9:" << nin << ";";
+  std::cout << "0:" << zer << ";1:" << one << ";2:" << two << ";3:" << thr
+            << ";4:" << fou << ";5:" << fiv << ";6:" << six << ";7:" << sev
+            << ";8:" << eig << ";9:" << nin << ";" << std::endl;
 }

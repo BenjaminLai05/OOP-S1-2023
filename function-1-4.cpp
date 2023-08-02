@@ -12,5 +12,6 @@ void print_scaled(int array[3][3], int scale) {
     for (int j = 0; j < 3; j++) {
       std::cout << scaledArray[i][j] << " ";
     }
+    std::cout << std::endl;
   }
 }
