@@ -7,7 +7,7 @@ int palindrome_sum(int integers[], int length) {
       return sum1;
     }
 
-bool is_palindrome(int integers[], int length) {
+bool is_array_palindrome(int integers[], int length) {
     for (int i = 0; i < length / 2; i++) { 
         if (integers[i] != integers[length - 1 - i]) {
             return false;
