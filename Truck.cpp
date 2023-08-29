@@ -1,15 +1,14 @@
 #include "Truck.h"
 #include <string>
 
-
 Truck::Truck() {
    code = 0;
    name = "";
 } 
 
 Truck::Truck(int temp_b_code, std::string temp_b_name) {
-   temp_b_code = code;
-   temp_b_name = name;
+   code = temp_b_code;
+   name = temp_b_name;
 } 
 
 std::string Truck::get_brand_name() {
