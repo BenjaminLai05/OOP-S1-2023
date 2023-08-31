@@ -1,17 +1,12 @@
-#ifndef VEHICLE_H
-#define VEHICLE_H
-
+#pragma once
 #include <ctime>
 
 class Vehicle {
- private:
-  std::time_t timeOfEntry;
-  int ID;
-
- public:
-  int setID();
-  void getID();
-  virtual int getParkingDuration(int seconds);
+public:
+    Vehicle(int id);
+    int getID() const;
+    virtual int getParkingDuration() const;
+protected:
+    std::time_t timeOfEntry;
+    int ID;
 };
-
-#endif

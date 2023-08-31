@@ -1,11 +1,7 @@
 #include "Bus.h"
 
-Bus::Bus() {
-   busTime = 0;
-}
+Bus::Bus(int id) : Vehicle(id) {}
 
-
-int Bus::getParkingDuration(int seconds) {
-    busTime = 0.75 * seconds;
-    return busTime;
+int Bus::getParkingDuration() const {
+    return Vehicle::getParkingDuration() * 0.75;
 }

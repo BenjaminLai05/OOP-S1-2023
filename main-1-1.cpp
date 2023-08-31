@@ -1,46 +1,39 @@
 #include <iostream>
+#include <vector>
 #include "Vehicle.h"
 #include "Car.h"
 #include "Bus.h"
 #include "Motorbike.h"
 
 int main() {
-using namespace std;
+    std::vector<Vehicle*> vehicles;
+    int nCars, nBuses, nMotorbikes;
 
-    int numofV;
-    
+    std::cout << "Enter the number of Cars: ";
+    std::cin >> nCars;
+    std::cout << "Enter the number of Buses: ";
+    std::cin >> nBuses;
+    std::cout << "Enter the number of Motorbikes: ";
+    std::cin >> nMotorbikes;
 
-    cout << "Number of Vehicles: "; 
-    cin >> numofV;
-
-    std::string* VehicleStorage = new std::string[numofV];
-
-    for (int i = 0; i < numofV; i++) {
-      cout << "Vehicle To Park: ";
-      cin >> VehicleStorage[i];
+    for(int i = 1; i <= nCars; ++i) {
+        vehicles.push_back(new Car(i));
     }
 
-    for (int i = 0; i < numofV; i++) {
-      if (VehicleStorage[i] == "Car") {
-         Car c1;
-         cout << c1.getParkingDuration(100) << endl;
-      }
-      else if (VehicleStorage[i] == "Bus") {
-         Bus b1;
-         cout << b1.getParkingDuration(100) << endl;
-
-      }
-      else if (VehicleStorage[i] == "Motorbike") {
-         Motorbike mb1;
-         cout << mb1.getParkingDuration(100) << endl;
-      }
-      else {
-         cout << "Unknown Vehicle Type: " << VehicleStorage[i] << endl;
-      }
+    for(int i = nCars + 1; i <= nCars + nBuses; ++i) {
+        vehicles.push_back(new Bus(i));
     }
 
-    delete[] VehicleStorage;
+    for(int i = nCars + nBuses + 1; i <= nCars + nBuses + nMotorbikes; ++i) {
+        vehicles.push_back(new Motorbike(i));
+    }
 
+    for(auto v : vehicles) {
+        std::cout << "Vehicle ID: " << v->getID()
+                  << ", Parking Duration: " << v->getParkingDuration() << " seconds"
+                  << std::endl;
+        delete v;
+    }
 
     return 0;
 }

@@ -1,16 +1,8 @@
-#ifndef MOTORBIKE_H
-#define MOTORBIKE_H
-
+#pragma once
 #include "Vehicle.h"
 
 class Motorbike : public Vehicle {
- private:
-  int seconds;
-  int motorbikeTime;
-
- public:
-  Motorbike();
-  int getParkingDuration(int seconds);
+public:
+    Motorbike(int id);
+    int getParkingDuration() const override;
 };
-
-#endif

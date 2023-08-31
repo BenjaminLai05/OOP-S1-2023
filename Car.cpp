@@ -1,10 +1,7 @@
 #include "Car.h"
 
-Car::Car() {
-   carTime = 0;
-}
+Car::Car(int id) : Vehicle(id) {}
 
-int Car::getParkingDuration(int seconds) {
-    carTime = 0.90 * seconds;
-    return carTime;
+int Car::getParkingDuration() const {
+    return Vehicle::getParkingDuration() * 0.9;
 }

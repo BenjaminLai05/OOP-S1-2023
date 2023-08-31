@@ -1,15 +1,8 @@
-#ifndef CAR_H
-#define CAR_H
-
+#pragma once
 #include "Vehicle.h"
 
 class Car : public Vehicle {
-private:
-    int seconds;
-    int carTime;
 public:
-    Car();
-    int getParkingDuration(int seconds);
+    Car(int id);
+    int getParkingDuration() const override;
 };
-
-#endif
