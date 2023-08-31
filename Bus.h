@@ -5,10 +5,10 @@
 
 class Bus : public Vehicle {
 private:
+    int seconds;
     int busTime;
 
 public:
-    Bus(int id);
     int getParkingDuration(int seconds);
 };
 

@@ -4,9 +4,12 @@
 #include "Vehicle.h"
 
 class Motorbike : public Vehicle {
+private:
+    int seconds;
+    int motorbikeTime;
+
 public:
-    Motorbike(int id);
-    virtual int getParkingDuration();
+    int getParkingDuration(int seconds);
 };
 
 #endif

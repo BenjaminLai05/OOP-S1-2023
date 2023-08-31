@@ -1,7 +1,6 @@
 #ifndef VEHICLE_H
 #define VEHICLE_H
 
-#include <iostream>
 #include <ctime>
 
 class Vehicle {
@@ -10,9 +9,9 @@ private:
     int ID;
 
 public:
-    Vehicle(int id);
-    int getID();
-    virtual int getParkingDuration();
+    int setID();
+    void getID();
+    virtual int getParkingDuration(int seconds);
 };
 
 #endif
