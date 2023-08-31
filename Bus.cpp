@@ -2,7 +2,7 @@
 
 Bus::Bus(int id) : Vehicle(id) {}
 
-int Bus::getParkingDuration(int seconds) {
-    busTime = static_cast<int>(0.75 * seconds);
-    return busTime;
+int Bus::getParkingDuration() {
+    int originalDuration = Vehicle::getParkingDuration();
+    return static_cast<int>(0.75 * originalDuration);
 }

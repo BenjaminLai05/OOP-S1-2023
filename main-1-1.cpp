@@ -1,43 +1,41 @@
 #include <iostream>
+#include <vector>
+#include <string>
 #include "Vehicle.h"
 #include "Car.h"
 #include "Bus.h"
 #include "Motorbike.h"
 
 int main() {
-    using namespace std;
+    int numOfV;
+    std::cout << "How many vehicles would you like to park? ";
+    std::cin >> numOfV;
 
-    int numofV;
+    std::vector<std::string> VehicleStorage(numOfV);
 
-    cout << "Number of Vehicles: "; 
-    cin >> numofV;
-
-    std::string* VehicleStorage = new std::string[numofV];
-
-    for (int i = 0; i < numofV; i++) {
-        cout << "Vehicle To Park: ";
-        cin >> VehicleStorage[i];
+    for (int i = 0; i < numOfV; ++i) {
+        std::cout << "Enter type of vehicle " << i+1 << " (Car/Bus/Motorbike): ";
+        std::cin >> VehicleStorage[i];
     }
 
-    for (int i = 0; i < numofV; i++) {
+    for (int i = 0; i < numOfV; ++i) {
+        Vehicle* v = nullptr;
+
         if (VehicleStorage[i] == "Car") {
-            Car c1(1);
-            cout << c1.getParkingDuration(100) << endl;
+            v = new Car(i);
         }
         else if (VehicleStorage[i] == "Bus") {
-            Bus b1(2);
-            cout << b1.getParkingDuration(100) << endl;
+            v = new Bus(i);
         }
         else if (VehicleStorage[i] == "Motorbike") {
-            Motorbike mb1(3);
-            cout << mb1.getParkingDuration(100) << endl;
+            v = new Motorbike(i);
         }
-        else {
-            cout << "Unknown Vehicle Type: " << VehicleStorage[i] << endl;
+
+        if (v) {
+            std::cout << "Vehicle ID: " << v->getID() << ", Parking Duration: " << v->getParkingDuration() << std::endl;
+            delete v;
         }
     }
-
-    delete[] VehicleStorage;
 
     return 0;
 }
