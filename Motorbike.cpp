@@ -1,8 +1,15 @@
-#include "Motorbike.h"
+#ifndef CAR_H
+#define CAR_H
 
-Motorbike::Motorbike(int id) : Vehicle(id) { }  // add this constructor definition
+#include "Vehicle.h"
 
-int Motorbike::getParkingDuration(int seconds) {
-    motorbikeTime = 0.85 * seconds;  // 15% reduction
-    return motorbikeTime;
-}
+class Car : public Vehicle {
+private:
+    int seconds;
+    int carTime;
+
+public:
+    int getParkingDuration(int seconds);
+};
+
+#endif

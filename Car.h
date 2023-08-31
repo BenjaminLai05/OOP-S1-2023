@@ -1,4 +1,3 @@
-// Car.h
 #ifndef CAR_H
 #define CAR_H
 
@@ -9,7 +8,6 @@ private:
     int seconds;
     int carTime;
 public:
-    Car(int id);  // add this line
     int getParkingDuration(int seconds);
 };
 
