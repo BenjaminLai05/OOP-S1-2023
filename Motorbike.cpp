@@ -1,15 +1,6 @@
-#ifndef CAR_H
-#define CAR_H
+#include "Motorbike.h"
 
-#include "Vehicle.h"
-
-class Car : public Vehicle {
-private:
-    int seconds;
-    int carTime;
-
-public:
-    int getParkingDuration(int seconds);
-};
-
-#endif
+int Motorbike::getParkingDuration(int seconds) {
+    motorbikeTime = 0.85 * seconds;
+    return motorbikeTime;
+}
