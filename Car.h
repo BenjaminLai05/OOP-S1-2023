@@ -8,6 +8,7 @@ private:
     int seconds;
     int carTime;
 public:
+    Car();
     int getParkingDuration(int seconds);
 };
 

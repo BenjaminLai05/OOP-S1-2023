@@ -4,12 +4,13 @@
 #include "Vehicle.h"
 
 class Bus : public Vehicle {
-private:
-    int seconds;
-    int busTime;
+ private:
+  int seconds;
+  int busTime;
 
-public:
-    int getParkingDuration(int seconds);
+ public:
+  Bus();
+  int getParkingDuration(int seconds);
 };
 
 #endif
