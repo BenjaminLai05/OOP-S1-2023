@@ -5,9 +5,10 @@
 
 class Car : public Vehicle {
 private:
-    int seconds;
     int carTime;
+
 public:
+    Car(int id);
     int getParkingDuration(int seconds);
 };
 
