@@ -7,8 +7,8 @@ class Motorbike : public Vehicle {
 private:
     int seconds;
     int motorbikeTime;
-
 public:
+    Motorbike(int id);  // add this line
     int getParkingDuration(int seconds);
 };
 

@@ -7,8 +7,8 @@ class Bus : public Vehicle {
 private:
     int seconds;
     int busTime;
-
 public:
+    Bus(int id);  // add this line
     int getParkingDuration(int seconds);
 };
 
