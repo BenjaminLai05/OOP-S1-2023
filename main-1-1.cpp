@@ -1,49 +1,42 @@
 #include <iostream>
-#include <string>
-class Player {
-   private:
-   std::string name;
-   int health;
-   int damage;
-   
+#include "Vehicle.h"
+int main() {
+using namespace std;
 
-   public: 
-   Player(std::string name, int health, int damage); // Constructor that sets the data members to the given values
-   void attack(Player* opponent, int damage); // Deals damage to the opponent based on the player's damage points
-   void takeDamage(int damage); // Reduces the player's health by the given amount
-   int getHealth(); 
-   void setHealth(int newhealth);
-   std::string getName(); 
-   void setName(std::string& newName);
-};
+    int numofV;
+    
 
-class Wizard: public Player {
-   private:
-   int mana;
-   public:
-   void castSpell(Player* opponent);
-};
+    cout << "Number of Vehicles: "; 
+    cin >> numofV;
 
-class Warrior: public Player {
-   private:
-   std::string weapon;
-   public:
-   void swingWeapon(Player* opponent);
+    std::string* VehicleStorage = new std::string[numofV];
 
-};
+    for (int i = 0; i < numofV; i++) {
+      cout << "Vehicle To Park: ";
+      cin >> VehicleStorage[i];
+    }
 
-std::string Player::getName() {
-   return name;
-}
+    for (int i = 0; i < numofV; i++) {
+      if (VehicleStorage[i] == "Car") {
+         Car c1;
+         cout << c1.getParkingDuration(100) << endl;
+      }
+      else if (VehicleStorage[i] =="Bus") {
+         Bus b1;
+         cout << b1.getParkingDuration(100) << endl;
 
-void Player::setName(std::string& newName) {
-   name = newName;
-}
+      }
+      else if (VehicleStorage[i] == "Motorbike") {
+         Motorbike mb1;
+         cout << mb1.getParkingDuration(100) << endl;
+      }
+      else {
+         cout << "Unknown Vehicle Type: " << VehicleStorage[i] << endl;
+      }
+    }
 
-int Player::getHealth() {
-   return health;
-}
+    delete[] VehicleStorage;
 
-void Player::setHealth(int newHealth) {
-   health = newHealth;
+
+    return 0;
 }
