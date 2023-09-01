@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
-#include <unistd.h> // for sleep function
+#include <thread>  // for std::this_thread::sleep_for
+#include <chrono>  // for std::chrono::seconds
 #include "ParkingLot.h"
 #include "Car.h"
 #include "Bus.h"
@@ -8,26 +9,32 @@
 
 int main() {
     ParkingLot lot(10);
-    int idCounter = 1;
     std::string vehicleType;
-
-    // Fill the parking lot with vehicles
-    for (int i = 0; i < 5; ++i) {
-        lot.parkVehicle(new Car(idCounter++));
+    int id = 1;
+  
+    // Park 5 Cars
+    for(int i = 0; i < 5; ++i) {
+        lot.parkVehicle(new Car(id++));
     }
-    for (int i = 0; i < 3; ++i) {
-        lot.parkVehicle(new Bus(idCounter++));
-    }
-    for (int i = 0; i < 2; ++i) {
-        lot.parkVehicle(new Motorbike(idCounter++));
+  
+    // Park 3 Buses
+    for(int i = 0; i < 3; ++i) {
+        lot.parkVehicle(new Bus(id++));
     }
 
-    // Sleep for 16 seconds to simulate the parking durations
-    sleep(16);
+    // Park 2 Motorbikes
+    for(int i = 0; i < 2; ++i) {
+        lot.parkVehicle(new Motorbike(id++));
+    }
+  
+    // Sleep for a few seconds to simulate some time passing. 
+    // This makes it more likely that some vehicles will overstay the 15-second limit.
+    std::this_thread::sleep_for(std::chrono::seconds(20));
 
-    // Count and print the number of vehicles that have overstayed for more than 15 seconds
-    int overstayCount = lot.countOverstayVehicles(15);
-    std::cout << "Number of vehicles that have overstayed for more than 15 seconds: " << overstayCount << std::endl;
+    // Count vehicles that overstayed 15 seconds
+    int overstayed = lot.countOverstayVehicles(15);
+
+    std::cout << "Number of vehicles that overstayed more than 15 seconds: " << overstayed << std::endl;
 
     return 0;
 }

@@ -1,16 +1,16 @@
 #pragma once
-#include <vector>
 #include "Vehicle.h"
 
 class ParkingLot {
 public:
-    ParkingLot(int capacity);
-    void parkVehicle(Vehicle* vehicle);
+    ParkingLot(int maxCapacity);
+    ~ParkingLot();
+    void parkVehicle(Vehicle* v);
     void unparkVehicle(int id);
     int getCount() const;
     int countOverstayVehicles(int maxParkingDuration) const;
 private:
     int maxCapacity;
-    int count;
-    std::vector<Vehicle*> vehicles;
+    int currentCount;
+    Vehicle** vehicles;
 };

@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include "ParkingLot.h"
 #include "Car.h"
 #include "Bus.h"
@@ -7,29 +6,30 @@
 
 int main() {
     ParkingLot lot(10);
-    int idCounter = 1;
     std::string vehicleType;
+    int id = 1;
 
     while (lot.getCount() < 10) {
-        std::cout << "Enter the type of vehicle you want to park (Car/Bus/Motorbike): ";
+        std::cout << "Enter the type of vehicle to park (Car/Bus/Motorbike): ";
         std::cin >> vehicleType;
 
         if (vehicleType == "Car") {
-            lot.parkVehicle(new Car(idCounter++));
+            lot.parkVehicle(new Car(id++));
         } else if (vehicleType == "Bus") {
-            lot.parkVehicle(new Bus(idCounter++));
+            lot.parkVehicle(new Bus(id++));
         } else if (vehicleType == "Motorbike") {
-            lot.parkVehicle(new Motorbike(idCounter++));
+            lot.parkVehicle(new Motorbike(id++));
         } else {
-            std::cout << "Invalid vehicle type. Please enter again." << std::endl;
+            std::cout << "Invalid vehicle type. Try again." << std::endl;
+            continue;
         }
     }
 
-    int vehicleID;
-    std::cout << "Enter the ID of the vehicle you want to unpark: ";
-    std::cin >> vehicleID;
+    int unparkId;
+    std::cout << "Enter the ID of the vehicle to unpark: ";
+    std::cin >> unparkId;
 
-    lot.unparkVehicle(vehicleID);
+    lot.unparkVehicle(unparkId);
 
     return 0;
 }
