@@ -32,7 +32,7 @@ int main() {
     std::this_thread::sleep_for(std::chrono::seconds(20));
 
     // Count vehicles that overstayed 15 seconds
-    int overstayed = lot.countOverstayVehicles(15);
+    int overstayed = lot.countOverstayingVehicles(15);
 
     std::cout << "Number of vehicles that overstayed more than 15 seconds: " << overstayed << std::endl;
 

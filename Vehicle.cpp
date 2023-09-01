@@ -12,3 +12,6 @@ int Vehicle::getID() const {
 int Vehicle::getParkingDuration() const {
     return std::difftime(std::time(nullptr), timeOfEntry);
 }
+
+Vehicle::~Vehicle() {
+}

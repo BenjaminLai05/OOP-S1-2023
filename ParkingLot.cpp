@@ -38,7 +38,7 @@ int ParkingLot::getCount() const {
     return currentCount;
 }
 
-int ParkingLot::countOverstayVehicles(int maxParkingDuration) const {
+int ParkingLot::countOverstayingVehicles(int maxParkingDuration) const {
     int count = 0;
     for (int i = 0; i < currentCount; ++i) {
         if (vehicles[i]->getParkingDuration() > maxParkingDuration) {
