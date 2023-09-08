@@ -1,5 +1,5 @@
-#ifndef AIRCRAFT_H
-#define AIRCRAFT_H
+#ifndef AIRVEHICLE_H
+#define AIRVEHICLE_H
 
 class AirVehicle {
 

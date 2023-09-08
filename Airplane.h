@@ -1,8 +1,8 @@
 #ifndef AIRPLANE_H
 #define AIRPLANE_H
-#include "AirCraft.h"
+#include "AirVehicle.h"
 
-class Airplane : public AirCraft {
+class Airplane : public AirVehicle {
 
 protected:
     int numPassengers;

@@ -1,9 +1,9 @@
 #ifndef HELICOPTER_H
 #define HELICOPTER_H
 #include <string>
-#include "AirCraft.h"
+#include "AirVehicle.h"
 
-class Helicopter : public AirCraft {
+class Helicopter : public AirVehicle {
 
 protected:
     std::string name;

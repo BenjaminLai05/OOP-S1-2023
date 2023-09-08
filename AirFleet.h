@@ -1,15 +1,15 @@
 #ifndef AIRFLEET_H
 #define AIRFLEET_H
-#include "AirCraft.h"
+#include "AirVehicle.h"
 
 class AirFleet {
 
 protected:
-    AirCraft ** fleet;
+    AirVehicle ** fleet;
 
 public:
     AirFleet();
-    AirCraft ** get_fleet();
+    AirVehicle ** get_fleet();
 
 };
 

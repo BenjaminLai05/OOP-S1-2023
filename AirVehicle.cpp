@@ -13,7 +13,7 @@ void AirVehicle::refuel() {
 }
 
 void AirVehicle::fly(int headwind, int minutes) {
-    // As previously, we're incrementing the flight count. You can add more logic here if needed.
+
     numberOfFlights++;
 }
 
