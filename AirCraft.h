@@ -1,0 +1,25 @@
+#ifndef AIRCRAFT_H
+#define AIRCRAFT_H
+
+class AirCraft {
+
+protected:
+    int weight;                 
+    float fuel;                  
+    int numberOfFlights; 
+
+public:
+    AirCraft();
+    AirCraft(int w);
+    float get_fuel();
+    int get_weight();
+    int get_numberOfFlights();
+    void set_fuel(float fuel);
+    void set_weight(int weight);
+    void set_numberOfFlights(int numberOfFlights);
+    void refuel();
+    virtual void fly(int headwind, int minutes);
+
+};
+
+#endif
