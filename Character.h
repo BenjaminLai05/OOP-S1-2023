@@ -5,12 +5,13 @@
 
 class Character : public Cell {
 public:
+    // Constructor
     Character(int x, int y) : Cell(x, y, 'C') {}
 
+    // Move the character
     void move(int dx, int dy) {
-        int newX = std::get<0>(getPos()) + dx;
-        int newY = std::get<1>(getPos()) + dy;
-        setPos(newX, newY);
+        auto [x, y] = getPos();
+        setPos(x + dx, y + dy);
     }
 };
 
