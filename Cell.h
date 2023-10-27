@@ -4,14 +4,15 @@
 #include <tuple>
 
 class Cell {
-private:
+protected:
     std::tuple<int, int> position;
     char type;
 
 public:
-    
+    virtual ~Cell() = default;
+
     Cell(int x, int y, char type) : position(x, y), type(type) {}
-    
+
     std::tuple<int, int> getPos() const {
         return position;
     }
@@ -24,7 +25,6 @@ public:
         position = std::make_tuple(x, y);
     }
 
-    
     void setType(char newType) {
         type = newType;
     }

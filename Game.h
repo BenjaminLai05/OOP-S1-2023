@@ -16,82 +16,86 @@ private:
     int gridWidth, gridHeight;
 
 public:
-    // Default constructor
     Game() : gridWidth(0), gridHeight(0) {
         srand(static_cast<unsigned int>(time(nullptr))); // Seed for random number generation
     }
 
-    // Initialize the game
-    void initGame(int numCharacters, int numTraps, int width, int height) {
-        this->gridWidth = width;
-        this->gridHeight = height;
+    void initGame(int numCharacters, int numTraps, int width, int height);
+    void gameLoop(int maxIterations, double trapActivationDistance);
+    std::vector<Cell*>& getGrid();
 
-        // Clear existing grid
-        for (auto cell : grid) {
-            delete cell;
-        }
-        grid.clear();
+    ~Game();
+};
 
-        // Populate grid with characters and traps
-        for (int i = 0; i < numCharacters + numTraps; ++i) {
-            int x = rand() % width;
-            int y = rand() % height;
+#endif
 
-            if (i < numCharacters) {
-                grid.push_back(new Character(x, y));
-            } else {
-                grid.push_back(new Trap(x, y));
-            }
+// Game.cpp
+#include "Game.h"
+
+void Game::initGame(int numCharacters, int numTraps, int width, int height) {
+    this->gridWidth = width;
+    this->gridHeight = height;
+
+    for (auto cell : grid) {
+        delete cell;
+    }
+    grid.clear();
+
+    for (int i = 0; i < numCharacters + numTraps; ++i) {
+        int x = rand() % width;
+        int y = rand() % height;
+
+        if (i < numCharacters) {
+            grid.push_back(new Character(x, y));
+        } else {
+            grid.push_back(new Trap(x, y));
         }
     }
+}
 
-    // Game loop
-    void gameLoop(int maxIterations, double trapActivationDistance) {
-        for (int iteration = 0; iteration < maxIterations; ++iteration) {
-            for (Cell* cell : grid) {
-                Character* character = dynamic_cast<Character*>(cell);
-                if (character) {
-                    character->move(1, 0);
-                    auto [x, y] = character->getPos();
-                    if (x >= gridWidth || y >= gridHeight) {
-                        std::cout << "Character has won the game!" << std::endl;
-                        return;
-                    }
+void Game::gameLoop(int maxIterations, double trapActivationDistance) {
+    for (int iteration = 0; iteration < maxIterations; ++iteration) {
+        for (Cell* cell : grid) {
+            Character* character = dynamic_cast<Character*>(cell);
+            if (character) {
+                character->move(1, 0);
+                int x, y;
+                std::tie(x, y) = character->getPos();
+                if (x >= gridWidth || y >= gridHeight) {
+                    std::cout << "Character has won the game!" << std::endl;
+                    return;
                 }
             }
+        }
 
-            for (Cell* cell : grid) {
-                Character* character = dynamic_cast<Character*>(cell);
-                if (character) {
-                    for (Cell* other : grid) {
-                        Trap* trap = dynamic_cast<Trap*>(other);
-                        if (trap && trap->isActive()) {
-                            auto [charX, charY] = character->getPos();
-                            auto [trapX, trapY] = trap->getPos();
-                            double distance = std::sqrt(std::pow(charX - trapX, 2) + std::pow(charY - trapY, 2));
-                            if (distance <= trapActivationDistance) {
-                                trap->apply(*character);
-                            }
+        for (Cell* cell : grid) {
+            Character* character = dynamic_cast<Character*>(cell);
+            if (character) {
+                for (Cell* other : grid) {
+                    Trap* trap = dynamic_cast<Trap*>(other);
+                    if (trap && trap->isActive()) {
+                        int charX, charY, trapX, trapY;
+                        std::tie(charX, charY) = character->getPos();
+                        std::tie(trapX, trapY) = trap->getPos();
+                        double distance = std::sqrt(std::pow(charX - trapX, 2) + std::pow(charY - trapY, 2));
+                        if (distance <= trapActivationDistance) {
+                            trap->apply(*character);
                         }
                     }
                 }
             }
         }
-
-        std::cout << "Maximum number of iterations reached. Game over." << std::endl;
     }
 
-    // Getter for the grid
-    std::vector<Cell*>& getGrid() {
-        return grid;
-    }
+    std::cout << "Maximum number of iterations reached. Game over." << std::endl;
+}
 
-    // Destructor to free memory
-    ~Game() {
-        for (auto cell : grid) {
-            delete cell;
-        }
-    }
-};
+std::vector<Cell*>& Game::getGrid() {
+    return grid;
+}
 
-#endif
+Game::~Game() {
+    for (auto cell : grid) {
+        delete cell;
+    }
+}
