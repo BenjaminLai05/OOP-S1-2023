@@ -28,7 +28,6 @@ public:
     void setType(char newType) {
         type = newType;
     }
-    }
 };
 
 #endif
