@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <vector>
+#include <cmath>
 #include "Cell.h"
 #include "Character.h"
 #include "Trap.h"
@@ -15,20 +16,64 @@ private:
     int gridWidth, gridHeight;
 
 public:
-    Game() : gridWidth(0), gridHeight(0) {
-        srand(static_cast<unsigned int>(time(nullptr))); 
+    void initGame(int numCharacters, int numTraps, int width, int height) {
+    gridWidth = width;
+    gridHeight = height;
+
+    for (auto cell : grid) {
+        delete cell;
+    }
+    grid.clear();
+
+    for (int i = 0; i < numCharacters; ++i) {
+        int x = rand() % width;
+        int y = rand() % height;
+        grid.push_back(new Character(x, y));
     }
 
-    std::vector<Cell*>& getGrid() {
-        return grid;
+    for (int i = 0; i < numTraps; ++i) {
+        int x = rand() % width;
+        int y = rand() % height;
+        grid.push_back(new Trap(x, y));
     }
+}
 
-    void initGame(int numCharacters, int numTraps, int width, int height);
+void gameLoop(int maxIterations, double trapActivationDistance) {
+    for (int iteration = 0; iteration < maxIterations; ++iteration) {
+        // Move characters
+        for (Cell* cell : grid) {
+            Character* character = dynamic_cast<Character*>(cell);
+            if (character) {
+                character->move(1, 0);
+                auto [x, y] = character->getPos();
+                if (x >= gridWidth || y >= gridHeight) {
+                    std::cout << "Character has won the game!" << std::endl;
+                    return;
+                }
+            }
+        }
 
-    void gameLoop(int maxIterations, double trapActivationDistance);
-
-
-    ~Game();
+        for (Cell* cell : grid) {
+            Character* character = dynamic_cast<Character*>(cell);
+            if (character) {
+                for (Cell* other : grid) {
+                    Trap* trap = dynamic_cast<Trap*>(other);
+                    if (trap && trap->isActive()) {
+                        auto [charX, charY] = character->getPos();
+                        auto [trapX, trapY] = trap->getPos();
+                        double distance = std::sqrt(std::pow(charX - trapX, 2) + std::pow(charY - trapY, 2));
+                        if (distance <= trapActivationDistance) {
+                            trap->apply(*character);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 };
 
 #endif
+
+
+
